@@ -7,13 +7,15 @@ const SleepSchema = mongoose.Schema({
   to: {
     type: Date,
   },
-  
+  duration: {
+    type: Number,
+  }, 
   user: {
     type: mongoose.Types.ObjectId,
     ref: 'user'
   } 
 });
 
-const sleepModel = mongoose.model("sleep", SleepSchema);
+const sleepModel = mongoose.model("sleeps", SleepSchema);
 module.exports = sleepModel;
 

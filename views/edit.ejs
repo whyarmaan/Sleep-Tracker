@@ -1,0 +1,11 @@
+<%- include("./partials/header.ejs") -%>
+<div class="hero__bg">
+    <div class="text__content">
+        <form action="/sleep/edit/post/<%= sleep._id %>" method="POST">
+            <input type="datetime-local" name="from" id="from" value="<%= sleep.from %>">
+            <input type="datetime-local" name="to" id="to" value="<%= sleep.to %>">
+            <button type="submit">Edit</button>
+        </form>
+    </div>
+</div>
+<%- include("./partials/footer.ejs") -%>

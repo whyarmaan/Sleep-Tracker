@@ -12,9 +12,7 @@ exports.authenticate = passport.authenticate('googleOauth', { scope: [
 ], session: false })
 
 exports.authCallback = (req, res, next) => {
-    return res.json({
-        user: req.user
-    })
+    return res.redirect("/");
 }
 
 exports.passportCallback = passport.authenticate('googleOauth', { failureRedirect: '/auth/google', failureFlash: true })

@@ -12,24 +12,20 @@ passport.use('googleOauth', new GoogleOAuthStratergy({
     passReqToCallback: true
 }, async (req, accessToken, refreshToken, profile, done) => {
     
-    try {
-        console.log("hi")
-        const user = await User.find({ id: profile.id })[0];
-        if(user === undefined) {
-            throw new Error("User Ain't Added To The DB")
+        console.log(await User.find({id: profile.id}))
+        const users = await User.find({ id: profile.id });
+        if(users.length > 0) {
+            return done(null, profile)     
         } 
-        done(null, profile)     
-    } catch (error) {
         console.log('hi2')
-        const user = new User({
+        const newUser = new User({
             id: profile.id,
             username: profile.username,
             email: profile.emails[0].value
         });
 
-        await user.save()
+        await newUser.save()
         done(null, profile)
-    }
     
 }))
 

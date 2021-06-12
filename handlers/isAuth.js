@@ -1,7 +1,7 @@
 const User = require("../Models/User");
 
 module.exports = async(req, res, next) => {
-   req.user ?  (async () => {
+   req.user ?  await (async () => {
        const { id } = req.user;
        try{
            await User.find({ id });

@@ -1,0 +1,60 @@
+<%- include("./partials/header.ejs") -%>
+<script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
+<div class="hero__bg">
+        <% sleeps.forEach(sleep => { %>
+            <div class="text__container" style="padding: 10px; margin: 20px">
+                <h1>
+                    <span class="from">
+                        <%= sleep.from.toLocaleString() %> 
+                    </span><br />to<br /> 
+                    <span class="to">
+                        <%= sleep.to.toLocaleString() %>
+                    </span><br /> for
+                    <span class="duration">
+                     <%= Math.round(((sleep.duration / 1000) / 60) / 60) %>
+                    </span>
+                    Hrs.
+                    </h1>
+                <div class="button-holders">
+
+                    <button class="buttons">
+                        <a href="/sleep/edit/<%= sleep._id %>" style="color: inherit;">EDIT</a>
+                    </button>
+                    <button class="buttons">
+                        <a href="/sleep/delete/<%= sleep._id %>" style="color: inherit;">DELETE</a>
+                    </button>
+                </div>
+            </div>
+        <% }) %>
+        <h1>
+            See Graph Below
+        </h1>
+    <i class="fas fa-arrow-down"></i>
+    </div>
+    <div style="height: 100%; width: 100%;" id="chart"></div>
+    <script>
+        const froms = Array.from(document.getElementsByClassName("from")).map(span => span.textContent.trim())
+        const tos = Array.from(document.getElementsByClassName("to"))
+        const durations = Array.from(document.getElementsByClassName("duration")).map(span => parseInt(span.innerHTML))
+        const numberOfSleeps = froms.length;
+        const data = {
+            type: 'horizontal column',
+            series: [
+                {
+                    name: "SleepGraph",
+                    points: [
+
+                    ]
+                }
+            ]
+        }
+        console.log(froms)
+        froms.forEach((from, i) => {
+            data.series[0].points.push({
+                x: from,
+                y: durations[i]
+            })
+        });
+        JSC.Chart("chart", data);
+    </script>
+<%- include("./partials/footer.ejs") -%>

@@ -1,0 +1,16 @@
+<%- include("./partials/header.ejs") -%>
+    <div class="hero__bg">
+        <div class="text__container">
+
+            <h1>Welcome To Sleep Tracker!</h1>
+            <div class="button-holders">
+                <% if(user){ %>
+                    <a href="/auth/logout" class="buttons signin">Log out.</a>
+                    <a href="/sleep/all" class="buttons admin">see your sleep graph.</a>
+                <% } else { %>
+                        <a href="/auth/google" class="buttons signin">continue with google</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <%- include("./partials/footer.ejs") -%>

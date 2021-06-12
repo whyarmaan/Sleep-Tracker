@@ -7,16 +7,20 @@ require("ejs");
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const morgan = require("morgan");
 dotenv.config();
 const cors = require("cors");
 const routes = require("./routes/routes.api");
 const passport = require("passport");
 const session = require("cookie-session");
+const bodyParser = require("body-parser");
 
 // Constants
 const app = express();
-app.use(express.json());
-app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(morgan("short"))
+app.use(express.static(__dirname + '/public/'));
+app.set('view engine', 'ejs');
 app.use(session({
     keys: ['test-key', 'test-key-2'],
     name: 'session'
