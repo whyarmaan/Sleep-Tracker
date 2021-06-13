@@ -54,3 +54,34 @@ body {
 .yellow {
     color: yellow;
 }
+
+.nav-ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav-ul a {
+    padding: 10px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    font-family: 'MesloLGS NF';
+}
+
+nav a {
+    color: inherit;
+}
+.brand {
+    font-size: 30px;
+}

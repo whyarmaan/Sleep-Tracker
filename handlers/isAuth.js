@@ -8,11 +8,7 @@ module.exports = async(req, res, next) => {
            next();
        }catch(err){
            console.log(err);
-            return res.json({
-                message: 'You ain\'t signed in.'
-            })         
+            return res.render("notify.ejs", { message: "You gotta sign in first.", color: 'red' })   
        }
-   })() : res.json({
-       message: 'You ain\'t signed in.'
-   }) 
+   })() : res.render("notify.ejs", { message: 'You gotta sign in first.', color: 'red' })
 }
